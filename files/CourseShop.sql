@@ -1,5 +1,9 @@
 DROP DATABASE IF EXISTS CourseShop;
+CREATE USER 'Sam' @ 'localhost' IDENTIFIED BY 'MDP123'
 CREATE DATABASE CourseShop;
+GRANT ALL PRIVILEGES ON CourseShop.* TO 'Sam' @ 'localhost';
+FLUSH PRIVILEGES;
+
 USE CourseShop;
 
 -- Table des formations
@@ -52,7 +56,8 @@ CREATE TABLE Customer (
 	FOREIGN KEY (IdUser) REFERENCES Users(IdUser)
 ) ENGINE = InnoDB;
 
--- Table des commandes (note : ne pas appeler la table 'Order' pour éviter la confusion avec la requête 'order'
+-- Table des commandes 
+-- note : ne pas appeler la table 'Order' pour éviter un conflit avec la requête 'order' !
 CREATE TABLE Orders (
 IdOrder int(4) PRIMARY KEY AUTO_INCREMENT,
 Amount float(10) NOT NULL DEFAULT 0,
@@ -77,7 +82,7 @@ DatePayment DATE NOT NULL DEFAULT NOW(),
 Amount float(10) NOT NULL
 ) ENGINE = InnoDB;
 
--- En ligne de commandes :
+-- Demo en ligne de commandes : ok
 
 -- Affichage de toutes les formations à distance/présentiel = 
 -- select * from Courses where type='distanciel';

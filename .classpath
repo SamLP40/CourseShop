@@ -7,6 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="Course.sql"/>
-	<classpathentry kind="lib" path="files/CourseShop.sql"/>
+	<classpathentry exported="true" kind="lib" path="files/CourseShop.sql"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
