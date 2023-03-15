@@ -17,29 +17,28 @@ import fr.fms.entities.Orders;
 import fr.fms.entities.Cart;
 import fr.fms.entities.Users;
 
-public class IBusinessImpl implements IBusiness {	
+public class IBusinessImpl implements IBusiness2 {	
 	private HashMap<Integer,Courses> cart;
 	private Dao<Courses> coursesDao = DaoFactory.getArticleDao();
 	private Dao<Users> userDao = DaoFactory.getUserDao();
 	private Dao<Category> categoryDao = DaoFactory.getCategoryDao();
 	private Dao<Orders> orderDao = DaoFactory.getOrderDao();
-	private Dao<Cart> orderItemDao = DaoFactory.getOrderItemDao();
+	private Dao<Cart> cartDao = DaoFactory.getOrderItemDao();
 	private Dao<Customer> customerDao = DaoFactory.getCustomerDao();
 	
 	public IBusinessImpl() {
 		this.cart = new HashMap<Integer,Courses>();
 	}
 
-	@Override
-	public void addToCart(Cart courses) {
-		Courses art = cart.get(courses.getIdCart());
-		if(art.getTotalCourses != null) {
-			art.setTotalCourses(art.getTotalCourses() + 1);
+	public void addToCart(Courses courses) {
+		Courses art = cart.get(courses.getIdCourse());
+		if(art != null) {
+			art.setQuantity(art.getQuantity() + 1);
 		}
-		else cart.put(article.getId(), article);
+		else cart.put(courses.getIdCourse(), courses);
 	}
 
-	@Override
+	
 	public void rmFromCart(int id) {
 		Courses course = cart.get(id);
 		if(course != null) {
@@ -48,19 +47,19 @@ public class IBusinessImpl implements IBusiness {
 		}				
 	}
 
-	@Override
+	
 	public ArrayList<Courses> getCart() {
 		return new ArrayList<Courses> (cart.values());
 	}
 
-	@Override
+	
 	public int order(int idCustomer) {	
 		if(customerDao.read(idCustomer) != null) {
 			double total = getTotal(); 
-			Orders order = new Orders(total, new Date(), idCustomer);
+			Orders order = new Orders(new Date(), total, idCustomer);
 			if(orderDao.create(order)) {	
-				for(Courses article : cart.values()) {	
-					cartDao.create(new Cart(0, article.getId(), article.getQuantity(), article.getPrice(), order.getIdOrder()));
+				for(Courses course : cart.values()) {	
+					cartDao.create(new Cart(0, course.getIdCourse(), order.getIdOrder()));
 				}
 				return order.getIdOrder();
 			}
@@ -68,22 +67,21 @@ public class IBusinessImpl implements IBusiness {
 		return 0;
 	}
 
-	@Override
 	public ArrayList<Courses> readArticles() {
 		return coursesDao.readAll();
 	}
 	
-	@Override
+	
 	public ArrayList<Category> readCategories() {
 		return categoryDao.readAll();
 	}
 
-	@Override
+	
 	public Courses readOneArticle(int id) {
 		return coursesDao.read(id);
 	}
 
-	@Override
+	
 	public ArrayList<Courses> readArticlesByCatId(int id) {
 		return ((CoursesDao) coursesDao).readAllByCat(id);
 	}
@@ -110,4 +108,3 @@ public class IBusinessImpl implements IBusiness {
 		return categoryDao.read(id);
 	}
 }
-

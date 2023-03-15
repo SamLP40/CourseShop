@@ -1,8 +1,6 @@
 DROP DATABASE IF EXISTS CourseShop;
-CREATE USER 'Sam' @ 'localhost' IDENTIFIED BY 'MDP123'
+
 CREATE DATABASE CourseShop;
-GRANT ALL PRIVILEGES ON CourseShop.* TO 'Sam' @ 'localhost';
-FLUSH PRIVILEGES;
 
 USE CourseShop;
 
@@ -82,10 +80,25 @@ DatePayment DATE NOT NULL DEFAULT NOW(),
 Amount float(10) NOT NULL
 ) ENGINE = InnoDB;
 
--- Demo en ligne de commandes : ok
+-- Demo en ligne de commandes : ok | Note : ne pas oublier de lancer le script via le chemin d'accès au fichier sql.
 
 -- Affichage de toutes les formations à distance/présentiel = 
 -- select * from Courses where type='distanciel';
 
 -- Recherche par mot clé :
 -- Select * from Courses where [category] like '%Keyword%';
+
+-- Table catégories
+
+CREATE TABLE Category (
+	Id					INT(4) 		 PRIMARY KEY AUTO_INCREMENT,
+	Name 				VARCHAR(30)  NOT NULL,
+	Description 			VARCHAR(150) NOT NULL
+) ENGINE = InnoDB;
+
+insert into Category (Id, Name, Description) values (1 , 'Java' , 'Langage de programmation qui necessite beaucoup de cafe pour etre compris');
+insert into Category (Id, Name, Description) values (2 , 'Front' , 'Tout ce qui concerne le graphisme');
+insert into Category (Id, Name, Description) values (3 , 'Back' , 'La partie dev que personne ne voit mais que tout le monde critique par ce que c.est mal foutu');
+insert into Category (Id, Name, Description) values (4 , 'Escroquerie' , '1800€ pour 3 jours de formation, je vous la recommande chaleureusement !');
+
+select * from Category;

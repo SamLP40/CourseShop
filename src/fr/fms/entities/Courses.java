@@ -9,6 +9,7 @@ public class Courses {
 	public String category;
 	public String type;
 	public double price;
+	public int quantity = 1; // Compteur de formations achetées.
 	
 	public Courses(int idCourse, String name, int duration, String description, String category, String type, double price) {
 
@@ -28,6 +29,20 @@ public class Courses {
 		this.category = category;
 		this.type = type;
 		this.price = price;
+	}
+
+	
+	public Courses(int idCourse, String name, int duration, String description, String category, String type,
+			double price, int quantity) {
+
+		this.idCourse = idCourse;
+		this.name = name;
+		this.duration = duration;
+		this.description = description;
+		this.category = category;
+		this.type = type;
+		this.price = price;
+		this.quantity = quantity;
 	}
 
 	@Override
@@ -90,5 +105,18 @@ public class Courses {
 
 	public int getDuration() {
 		return duration;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public static int centerString(String columnIdcourse) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

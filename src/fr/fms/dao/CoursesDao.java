@@ -16,7 +16,7 @@ public class CoursesDao implements Dao<Courses> {
 
 	@Override
 	public boolean create(Courses obj) {
-		String str = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice, IdCategory) VALUES (?,?,?,?);";	
+		String str = "INSERT INTO Courses (Name, Duration, Description, Category, Type, Price) VALUES (?,?,?,?,?,?);";	
 		try (PreparedStatement ps = connection.prepareStatement(str)){
 			ps.setInt(1, obj.getIdCourse());
 			ps.setString(2, obj.getName());
@@ -27,7 +27,7 @@ public class CoursesDao implements Dao<Courses> {
 			ps.setDouble(7, obj.getPrice());
 			if( ps.executeUpdate() == 1)	return true;
 		} catch (SQLException e) {
-			logger.severe("pb sql sur la création d'un article " + e.getMessage());
+			logger.severe("pb sql sur la création d'une formation " + e.getMessage());
 		} 	
 		return false;
 	}
@@ -39,7 +39,7 @@ public class CoursesDao implements Dao<Courses> {
 			ResultSet rs = statement.executeQuery(str);
 			if(rs.next()) return new Courses(rs.getInt(1) , rs.getString(2) , rs.getInt(3), rs.getString(4) , rs.getString(5), rs.getString(6), rs.getDouble(7));
 		} catch (SQLException e) {
-			logger.severe("pb sql sur la lecture d'un article " + e.getMessage());
+			logger.severe("pb sql sur la lecture d'une formation " + e.getMessage());
 		} 	
 		return null;
 	}
@@ -56,7 +56,7 @@ public class CoursesDao implements Dao<Courses> {
 			if( ps.executeUpdate() == 1)
 			return true;
 		} catch (SQLException e) {
-			logger.severe("pb sql sur la mise à jour d'un article " + e.getMessage());
+			logger.severe("pb sql sur la mise à jour d'une formation " + e.getMessage());
 		} 	
 		return false;
 	}
@@ -68,7 +68,7 @@ public class CoursesDao implements Dao<Courses> {
 			statement.executeUpdate(str);		
 			return true;
 		} catch (SQLException e) {
-			logger.severe("pb sql sur la suppression d'un article " + e.getMessage());
+			logger.severe("pb sql sur la suppression d'une formation " + e.getMessage());
 		} 	
 		return false;
 	}
@@ -76,7 +76,7 @@ public class CoursesDao implements Dao<Courses> {
 	@Override
 	public ArrayList<Courses> readAll() {
 		ArrayList<Courses> courses = new ArrayList<Courses>();
-		String strSql = "SELECT * FROM T_Articles";		
+		String strSql = "SELECT * FROM Courses";		
 		try(Statement statement = connection.createStatement()){
 			try(ResultSet resultSet = statement.executeQuery(strSql)){ 			
 				while(resultSet.next()) {
@@ -91,7 +91,7 @@ public class CoursesDao implements Dao<Courses> {
 				}	
 			}
 		} catch (SQLException e) {
-			logger.severe("pb sql sur l'affichage des articles " + e.getMessage());
+			logger.severe("pb sql sur l'affichage des formations " + e.getMessage());
 		}	
 		catch (Exception e) {
 			logger.severe("pb : " + e.getMessage());
@@ -101,7 +101,7 @@ public class CoursesDao implements Dao<Courses> {
 	
 	public ArrayList<Courses> readAllByCat(int id) {
 		ArrayList<Courses> courses = new ArrayList<Courses>();
-		String strSql = "SELECT * FROM T_Articles where idCategory=" + id;		
+		String strSql = "SELECT * FROM Courses where idCategory=" + id;		
 		try(Statement statement = connection.createStatement()){
 			try(ResultSet resultSet = statement.executeQuery(strSql)){ 			
 				while(resultSet.next()) {
@@ -116,7 +116,7 @@ public class CoursesDao implements Dao<Courses> {
 				}	
 			}
 		} catch (SQLException e) {
-			logger.severe("pb sql sur l'affichage des articles par catégories " + e.getMessage());
+			logger.severe("pb sql sur l'affichage des formations par catégories " + e.getMessage());
 		}			
 		return courses;
 	}

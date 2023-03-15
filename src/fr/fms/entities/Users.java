@@ -41,5 +41,4 @@ public class Users {
 		return "Users [idUser=" + idUser + ", login=" + login + ", password=" + password + "]";
 	}
 	
-	
 }
