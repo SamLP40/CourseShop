@@ -1,6 +1,9 @@
+/**
+ * Méthodes permettant d'exécuter des requêtes SQL (CRUD) en base, relatives à un visiteur du site CourseShop.
+ */
 package fr.fms.dao;
 
-import java.lang.System.Logger;
+// import java.lang.System.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

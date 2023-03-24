@@ -1,3 +1,6 @@
+/**
+ *  Méthodes permettant d'exécuter des requêtes SQL (CRUD) en base, relatives au panier.
+ */
 package fr.fms.dao;
 
 import java.sql.PreparedStatement;

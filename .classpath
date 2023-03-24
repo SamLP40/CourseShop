@@ -6,7 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="Course.sql"/>
-	<classpathentry exported="true" kind="lib" path="files/CourseShop.sql"/>
+	<classpathentry kind="src" path="Users/Le-PorcherS/Course"/>
+	<classpathentry excluding="src/|Users/Le-PorcherS/Course/" kind="src" path=""/>
+	<classpathentry kind="lib" path="lib/mariadb-java-client-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

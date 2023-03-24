@@ -10,9 +10,17 @@ import fr.fms.dao.DaoFactory;
 import fr.fms.dao.UsersDao;
 import fr.fms.entities.Courses;
 import fr.fms.entities.Users;
-
+/**
+ * Programme exécutable qui permet de tester l'application CourseShop.
+ * @author Le-porcherS
+ *
+ */
 public class TestCourse extends Thread {
 
+	/**
+	 * Méthode qui permet de lancer l'application CourseShop.
+	 * @param name
+	 */
 	public TestCourse(String name) {
 	    super(name);
 	  }
@@ -27,13 +35,18 @@ public class TestCourse extends Thread {
 		 System.out.println(this.getName() + " : " + new CustomerDao().read(1));
 	  }      
 	
+	  /**
+	   * Programme principal servant à tester CourseShop.
+	   * 
+	   * @param args
+	   */
 	public static void main(String[] args) {	
 		testThreads();
-//		new UserDao().create(new User("toto", "123"));
+//		new UsersDao().create(new User("toto", "123"));
 //		testDaoFactory();
-//		testUserArticle();		
-//		testUserDao();		
-//		testArticleDao();
+//		testUsersCourses();		
+//		testUsersDao();		
+//		testCoursesDao();
 //		ArticleDao articleDao = new ArticleDao();
 //		articleDao.createPrepared(new Article("S9","Samsung",250));		
 	}
@@ -87,7 +100,7 @@ public class TestCourse extends Thread {
 		for(Users user : userDao.readAll())
 			System.out.println(user);
 	}
-	//----------------test les méthodes Crud du composant d'accès aux données : ArticleDao
+	//----------------test les méthodes Crud du composant d'accès aux données : CourseDao
 	private static void testArticleDao() {
 		CoursesDao coursesDao = new CoursesDao();
 		

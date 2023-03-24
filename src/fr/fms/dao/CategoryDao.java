@@ -1,3 +1,7 @@
+/**
+ *  Méthodes permettant d'exécuter des requêtes SQL (CRUD) en base, relatives aux catégories de formations.
+ */
+
 package fr.fms.dao;
 
 import java.sql.Statement;
@@ -17,7 +21,7 @@ public class CategoryDao implements Dao<Category>{
 	@Override
 	public Category read(int id) {
 		try (Statement statement = connection.createStatement()){
-			String str = "SELECT * FROM Categories where IdCategory=" + id + ";";									
+			String str = "SELECT * FROM Category where Id=" + id + ";";									
 			ResultSet rs = statement.executeQuery(str);
 			if(rs.next()) return new Category(rs.getInt(1) , rs.getString(2) , rs.getString(3));
 		} catch (SQLException e) {
@@ -39,11 +43,11 @@ public class CategoryDao implements Dao<Category>{
 	@Override
 	public ArrayList<Category> readAll() {
 		ArrayList<Category> categories = new ArrayList<Category>();
-		String sql = "select * from T_Categories";
+		String sql = "select * from Category";
 		try(Statement statement = connection.createStatement()){
 			try(ResultSet resultSet = statement.executeQuery(sql)){
 				while(resultSet.next()) {
-					categories.add(new Category(resultSet.getInt("idCategory"), resultSet.getString(2), resultSet.getString(3)));
+					categories.add(new Category(resultSet.getInt("id"), resultSet.getString(2), resultSet.getString(3)));
 				}
 				return categories;
 			}

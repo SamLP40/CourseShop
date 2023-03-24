@@ -1,3 +1,6 @@
+/**
+ * Fichier de config connexion JDBC.
+ */
 package fr.fms.dao;
 
 import java.io.FileOutputStream;
@@ -10,9 +13,9 @@ public class CreateConfigFile {
 		try (OutputStream ops = new FileOutputStream("files/config.properties")) {		
 			Properties properties = new Properties();	
 			properties.setProperty("db.driver", "org.mariadb.jdbc.Driver");
-			properties.setProperty("db.url", "jdbc:mariadb://localhost:3306/Shop");
+			properties.setProperty("db.url", "jdbc:mariadb://localhost:3306/CourseShop");
 			properties.setProperty("db.login", "root");
-			properties.setProperty("db.password", "fms2022");			
+			properties.setProperty("db.password", "fms2023");			
 			//properties.store(ops , "No comment !");
 			//System.out.println("file config.properties generated ! ");
 		}

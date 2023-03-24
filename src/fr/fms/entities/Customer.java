@@ -1,3 +1,9 @@
+/**
+ * Méthode représentant un client : c'est à dire, un utilisateur qui peut passer commande sur notre appli.
+ * Un client peut consulter les formations, trier, sélectionner... mais aussi passer commande.
+ * 
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 public class Customer {

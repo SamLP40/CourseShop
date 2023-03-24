@@ -1,3 +1,8 @@
+/**
+ * Classe correspondant aux catégories de produits (formations) vendues dans notre appli CourseShop.
+ * 
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 public class Category {

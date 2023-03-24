@@ -3,14 +3,14 @@ package fr.fms.authenticate;
 import fr.fms.dao.CustomerDao;
 import fr.fms.dao.Dao;
 import fr.fms.dao.DaoFactory;
-import fr.fms.dao.UserDao;
+import fr.fms.dao.UsersDao;
 import fr.fms.entities.Customer;
-import fr.fms.entities.User;
+import fr.fms.entities.Users;
 
 public class Authenticate {
 
 	private Dao<Customer> customerDao = DaoFactory.getCustomerDao();
-	private Dao<User> userDao = DaoFactory.getUserDao();
+	private Dao<Users> userDao = DaoFactory.getUserDao();
 
 	/**
 	 * méthode qui vérifie si login et pwd correspond à un utilisateur en base
@@ -19,8 +19,8 @@ public class Authenticate {
 	 * @return id de l'utilisateur, 0 si non trouvé
 	 */
 	public int existUser(String log, String pwd) {
-		User user = ((UserDao)userDao).findUserByCredentials(log,pwd);
-		if(user != null )	return user.getId();
+		Users user = ((UsersDao)userDao).findUserByCredentials(log,pwd);
+		if(user != null )	return user.getIdUser();
 		return 0;
 	}
 	
@@ -30,8 +30,8 @@ public class Authenticate {
 	 * @return id de l'utilisateur, 0 si non trouvé
 	 */
 	public int existUser(String log) {
-		User user = ((UserDao)userDao).findUserByLogin(log);
-		if(user != null )	return user.getId();
+		Users user = ((UsersDao)userDao).findUserByLogin(log);
+		if(user != null )	return user.getIdUser();
 		return 0;
 	}
 
@@ -45,7 +45,7 @@ public class Authenticate {
 	}
 
 	public void addUser(String email, String password) {
-		userDao.create(new User(email, password));		
+		userDao.create(new Users(email, password));		
 	}
 
 	public boolean addCustomer(Customer customer) {

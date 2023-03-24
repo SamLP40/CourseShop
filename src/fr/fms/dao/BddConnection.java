@@ -1,3 +1,9 @@
+/**
+ * Programme permettant la connexion à la DB.
+ * 
+ * @author Le-porcherS
+ */
+
 package fr.fms.dao;
 
 import java.io.FileInputStream;
@@ -18,6 +24,9 @@ public class BddConnection {
 	
 	private static final Logger logger = Logger.getLogger(BddConnection.class.getName());
 	
+	/**
+	 * Méthode permettant de créer une connexion à la DB.
+	 */
 	private BddConnection() {
 		try {
 			getConfigFile();								

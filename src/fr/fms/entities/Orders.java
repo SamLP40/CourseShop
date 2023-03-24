@@ -1,3 +1,7 @@
+/**
+ * Classe permettant de générer des commandes effectuées par un client dans l'appli. Le client doit être inséré en base.
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 import java.util.Date;

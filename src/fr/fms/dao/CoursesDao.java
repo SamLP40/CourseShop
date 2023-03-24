@@ -1,3 +1,6 @@
+/**
+ * Méthodes permettant d'exécuter des requêtes SQL (CRUD) en base, relatives aux formations.
+ */
 package fr.fms.dao;
 
 import java.sql.PreparedStatement;
@@ -11,7 +14,7 @@ import fr.fms.entities.Courses;
 public class CoursesDao implements Dao<Courses> {
 
 	public CoursesDao() {
-		//logger.info("Here we Go !");
+	logger.info("Here we Go !");
 	}
 
 	@Override
@@ -101,7 +104,7 @@ public class CoursesDao implements Dao<Courses> {
 	
 	public ArrayList<Courses> readAllByCat(int id) {
 		ArrayList<Courses> courses = new ArrayList<Courses>();
-		String strSql = "SELECT * FROM Courses where idCategory=" + id;		
+		String strSql = "SELECT * FROM Courses where idCourse=" + id;		
 		try(Statement statement = connection.createStatement()){
 			try(ResultSet resultSet = statement.executeQuery(strSql)){ 			
 				while(resultSet.next()) {

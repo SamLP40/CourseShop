@@ -1,3 +1,8 @@
+/**
+ * Classe qui représente des paiements réalisés par un client ayant passé commande via l'appli.
+ * 
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 import java.util.Date;

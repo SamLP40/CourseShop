@@ -1,3 +1,9 @@
+/**
+ * Méthodes permettant d'exécuter des requêtes SQL (CRUD) en base, relatives au paiement.
+ * 
+ * @author Le-porcherS
+ */
+
 package fr.fms.dao;
 
 import java.sql.PreparedStatement;

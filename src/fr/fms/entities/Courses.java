@@ -1,3 +1,9 @@
+/**
+ * Classe représentant une ou plusieurs formations préalablement générées en base. Ces formations peuvent être achetées (commandées)
+ * par un client. Un compteur permet de savoir combien de formations sont disponibles, ou ont été achetées.
+ * 
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 public class Courses {
@@ -115,8 +121,7 @@ public class Courses {
 		this.quantity = quantity;
 	}
 
-	public static int centerString(String columnIdcourse) {
-		// TODO Auto-generated method stub
-		return 0;
+	public static String centerString(String columnIdcourse) {
+		return "";
 	}
 }

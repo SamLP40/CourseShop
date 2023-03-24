@@ -1,3 +1,8 @@
+/**
+ * Classe représentant un utilisateur de l'appli. Il peut consulter la liste des formations, en sélectionner, les trier, etc.
+ * 
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 public class Users {
@@ -12,6 +17,11 @@ public class Users {
 		this.password = password;
 	}
 
+	public Users(String login, String password) {
+		this.login = login;
+		this.password = password;
+	}
+	
 	public int getIdUser() {
 		return idUser;
 	}

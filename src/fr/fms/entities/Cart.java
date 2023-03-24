@@ -1,3 +1,8 @@
+/**
+ * Classe représentant un panier de commandes. Un panier peut contenir plusieurs commandes, mais est lié à un client unique.
+ * 
+ * @author Le-porcherS
+ */
 package fr.fms.entities;
 
 public class Cart {

@@ -1,3 +1,6 @@
+/**
+ *  Méthodes permettant d'exécuter des requêtes SQL (CRUD) en base, relatives à un client enregistré en base.
+ */
 package fr.fms.dao;
 
 import java.sql.PreparedStatement;

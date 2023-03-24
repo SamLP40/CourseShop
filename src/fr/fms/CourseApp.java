@@ -75,7 +75,9 @@ package fr.fms;
 		 * Méthode qui affiche tous les articles en base en centrant le texte 
 		 */
 		public static void displayArticles() { 		
-			System.out.println(Courses.centerString(COLUMN_IDCOURSE) + Courses.centerString(COLUMN_DESCRIPTION) + Courses.centerString(COLUMN_BRAND) + Courses.centerString(COLUMN_PRICE));
+			System.out.println(Courses.centerString(COLUMN_IDCOURSE) + Courses.centerString(COLUMN_NAME) +
+			Courses.centerString(COLUMN_DESCRIPTION) + Courses.centerString(COLUMN_DURATION) 
+			+ Courses.centerString(COLUMN_CATEGORY) + Courses.centerString(COLUMN_TYPE) + Courses.centerString(COLUMN_PRICE));
 			business.readArticles().forEach(System.out::println);
 		}
 		
@@ -90,9 +92,9 @@ package fr.fms;
 				System.out.printf("              AFFICHAGE PAR CATEGORIE    %n");
 				System.out.printf("                     %-10s               %n",category.getName());
 				System.out.printf("------------------------------------------------------------%n");
-				System.out.printf("%-15s | %-15s | %-15s | %-15s %n",COLUMN_ID,COLUMN_DESCRIPTION,COLUMN_BRAND,COLUMN_PRICE);
+				System.out.printf("%-15s | %-15s | %-15s | %-15s %n",COLUMN_IDCOURSE, COLUMN_NAME, COLUMN_DESCRIPTION,COLUMN_DURATION, COLUMN_CATEGORY, COLUMN_TYPE,COLUMN_PRICE);
 				System.out.printf("------------------------------------------------------------%n");
-				business.readArticlesByCatId(id).forEach( a -> System.out.printf("%-15s | %-15s | %-15s | %-15s%n",a.getId(),a.getDescription(),a.getBrand(), a.getPrice()));
+				business.readArticlesByCatId(id).forEach( c -> System.out.printf("%-15s | %-15s | %-15s | %-15s%n",c.getIdCourse(), c.getName(),c.getDescription(),c.getDuration(), c.getCategory(),c.getType(), c.getPrice()));
 			}
 			else System.out.println("cette catégorie n'existe pas !");
 		}
@@ -101,13 +103,14 @@ package fr.fms;
 		 * Méthode qui affiche toutes les catégories
 		 */
 		private static void displayCategories() {
-			System.out.println(Category.centerString(COLUMN_ID) + Category.centerString(COLUMN_NAME) + Category.centerString(COLUMN_DESCRIPTION));
+			System.out.println(Category.centerString(COLUMN_IDCOURSE) + Category.centerString(COLUMN_NAME) + Category.centerString(COLUMN_DESCRIPTION));
 			business.readCategories().forEach(System.out::println);		
 		}
 		
 		/**
 		 * Méthode qui supprime un article du panier
 		 */
+	
 		public static void removeArticle() {
 			System.out.println("Selectionner l'id de l'article à supprimer du panier");
 			int id = scanInt();
@@ -121,9 +124,9 @@ package fr.fms;
 		public static void addArticle() {
 			System.out.println("Selectionner l'id de l'article à ajouter au panier");
 			int id = scanInt();
-			Article article = business.readOneArticle(id);
-			if(article != null) {
-				business.addToCart(article);
+			Courses courses = business.readOneArticle(id);
+			if(courses != null) {
+				business.addToCart(courses);
 				displayCart(false);
 			}
 			else System.out.println("l'article que vous souhaitez ajouter n'existe pas, pb de saisi id");
@@ -136,10 +139,10 @@ package fr.fms;
 			if(business.isCartEmpty()) 	System.out.println("PANIER VIDE");
 			else {
 				System.out.println("CONTENU DU PANIER :");
-				String titles = Article.centerString(COLUMN_ID) + Article.centerString(COLUMN_DESCRIPTION) + 
-						Article.centerString(COLUMN_BRAND) + Article.centerString(COLUMN_PRICE) + Article.centerString("QUANTITE");
+				String titles = Courses.centerString(COLUMN_IDCOURSE) + Courses.centerString(COLUMN_NAME) + Courses.centerString(COLUMN_DESCRIPTION) + 
+						Courses.centerString(COLUMN_DURATION) + Courses.centerString(COLUMN_CATEGORY) + Courses.centerString(COLUMN_TYPE) + Courses.centerString(COLUMN_PRICE) + Courses.centerString("Quantité");
 				System.out.println(titles);
-				business.getCart().forEach(a -> System.out.println(a.toString() + Article.centerString(String.valueOf(a.getQuantity()))));
+				business.getCart().forEach(a -> System.out.println(a.toString() + Courses.centerString(String.valueOf(a.getQuantity()))));
 				if(flag) {
 					System.out.println("MONTANT TOTAL : " + business.getTotal());
 					System.out.println("Souhaitez vous passer commande ? Oui/Non :");
